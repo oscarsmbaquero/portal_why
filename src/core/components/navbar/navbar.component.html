@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-md fixed-top border-custom" [ngClass]="navbarScrolled ? 'navbar-scrolled' : ''">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+
+    <!-- Logo -->
+    <div *ngIf="authService.isLoggedIn()" class="container-logo">
+      <img src="../../../assets/images/why_logo.png" width="60px" class="pt-1">
+    </div>
+
+    <!-- Info usuario desktop -->
+    <div *ngIf="authService.isLoggedIn() && userActive" class="d-none d-md-flex align-items-center gap-2 ms-auto me-2">
+      <img
+        [src]="authService.user()?.image"
+        alt="avatar"
+        class="nav-avatar"
+        referrerpolicy="no-referrer"
+      />
+      <span class="text-white">{{ userActive }}</span>
+      <button class="btn btn-sm btn-outline-light ms-2" (click)="logoutUser()">Cerrar sesión</button>
+    </div>
+
+    <!-- Botón hamburguesa SOLO móvil -->
+    <button
+      *ngIf="authService.isLoggedIn()"
+      class="navbar-toggler d-md-none ms-auto"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="border: none; background: transparent"
+    >
+      <svg viewBox="0 0 32 32" width="32" height="32">
+        <path class="line line-top-bottom"
+          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22">
+        </path>
+        <path class="line" d="M7 16 27 16"></path>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Offcanvas SOLO móvil -->
+  <div
+    class="offcanvas offcanvas-start offcanvas-dark d-md-none"
+    tabindex="-1"
+    id="offcanvasNavbar"
+    aria-labelledby="offcanvasNavbarLabel"
+  >
+    <div class="offcanvas-header">
+      <button
+        type="button"
+        class="btn-close custom-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <img src="../../../assets/images/ballenas_light.jpg" width="100px" class="mb-4"/>
+
+      <div *ngIf="userActive" class="d-flex align-items-center gap-2 mb-4 px-2">
+        <img
+          [src]="authService.user()?.image"
+          alt="avatar"
+          class="nav-avatar"
+          referrerpolicy="no-referrer"
+        />
+        <span class="text-white">{{ userActive }}</span>
+      </div>
+
+      <ul class="navbar-nav px-2">
+        <li class="nav-item" (click)="selectOption('inicio')" [class.selected]="selectedOption === 'inicio'">
+          <span class="nav-link navbar-uppercase" style="cursor: pointer" data-bs-dismiss="offcanvas">
+            Inicio
+          </span>
+        </li>
+        <li class="navbar-divider"></li>
+        <li class="nav-item" *ngIf="userActive">
+          <span
+            class="nav-link navbar-uppercase"
+            style="cursor: pointer"
+            (click)="logoutUser()"
+            data-bs-dismiss="offcanvas"
+          >
+            Cerrar sesión
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</nav>

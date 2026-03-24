@@ -1,0 +1,26 @@
+{
+  "functions": {
+    "api/chat.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/chat",
+      "destination": "/api/chat.js"
+    },
+    {
+      "source": "/api/n8n",
+      "destination": "/api/n8n.js"
+    },
+    {
+      "source": "/n8n-api/:match*",
+      "destination": "https://abolitionary-verline-erethismic.ngrok-free.dev/api/v1/:match*"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
