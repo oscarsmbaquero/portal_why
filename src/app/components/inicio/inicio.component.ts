@@ -38,13 +38,13 @@ cards: any[] = [
   {
     label: 'Automatizaciones',
     sub: 'Demo de flujos automáticos',
-    url: 'https://automatizaciones.tudominio.com',
+    url: 'https://why-is-demo.vercel.app/',
     img: '/assets/images/why_demo.png',
   },
   {
     label: 'Fichajes',
     sub: 'Control de presencia',
-    url: 'https://fichajes.tudominio.com',
+    url: 'https://why-fichajes.vercel.app/',
     img: '/assets/images/why_fichajes.png',
   },
 ];
